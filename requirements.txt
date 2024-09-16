@@ -1,7 +1,9 @@
 autopep8==2.3.1
 blinker==1.8.2
+cffi==1.17.1
 click==8.1.7
 colorama==0.4.6
+cryptography==43.0.1
 Flask==3.0.3
 Flask-Mail==0.10.0
 itsdangerous==2.2.0
@@ -9,5 +11,7 @@ Jinja2==3.1.4
 MarkupSafe==2.1.5
 pipUpdateAll==1.0.0
 pycodestyle==2.12.1
-PySQLiteDBConnection==1.0.6
+pycparser==2.22
+PySQLiteDBConnection==1.0.7
+python-dotenv==1.0.1
 Werkzeug==3.0.4
