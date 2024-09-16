@@ -61,6 +61,8 @@ def allowed_file(filename):
 def get_files():
     files = []
     for filename in os.listdir(app.config['UPLOAD_FOLDER']):
+        if filename == '.keep':
+            continue
         files.append({
             'name': filename,
             'type': filename.split('.')[-1],
