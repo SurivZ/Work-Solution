@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/static/images/book-open-solid.webp" type="image/x-icon">
+  <title>Work Solution</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20"
+        viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path
+          d="M249.6 471.5c10.8 3.8 22.4-4.1 22.4-15.5l0-377.4c0-4.2-1.6-8.4-5-11C247.4 52 202.4 32 144 32C93.5 32 46.3 45.3 18.1 56.1C6.8 60.5 0 71.7 0 83.8L0 454.1c0 11.9 12.8 20.2 24.1 16.5C55.6 460.1 105.5 448 144 448c33.9 0 79 14 105.6 23.5zm76.8 0C353 462 398.1 448 432 448c38.5 0 88.4 12.1 119.9 22.6c11.3 3.8 24.1-4.6 24.1-16.5l0-370.3c0-12.1-6.8-23.3-18.1-27.6C529.7 45.3 482.5 32 432 32c-58.4 0-103.4 20-123 35.6c-3.3 2.6-5 6.8-5 11L304 456c0 11.4 11.7 19.3 22.4 15.5z" />
+      </svg> Work Solution
+    </div>
+    <div class="auth-buttons">
+      {% if user %}
+      <button class="upload" id="upload-btn"><svg xmlns="http://www.w3.org/2000/svg" width="12"
+          viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path fill="#ffffff"
+            d="M288 109.3L288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-242.7-73.4 73.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l128-128c12.5-12.5 32.8-12.5 45.3 0l128 128c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L288 109.3zM64 352l128 0c0 35.3 28.7 64 64 64s64-28.7 64-64l128 0c35.3 0 64 28.7 64 64l0 32c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64l0-32c0-35.3 28.7-64 64-64zM432 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
+        </svg> Subir</button>
+      <button class="logout"><svg xmlns="http://www.w3.org/2000/svg" width="12"
+          viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path fill="#ffffff"
+            d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
+        </svg> Salir</button>
+      {% else %}
+      <button class="login"><svg xmlns="http://www.w3.org/2000/svg" width="10"
+          viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path fill="#ffffff"
+            d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
+        </svg> Iniciar sesión</button>
+      {% endif %}
+    </div>
+  </header>
+
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <span class="message {{ category }}">{{ message }}</span>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <h1>Work Solution</h1>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Ingresa el nombre del archivo que buscas">
+      <button><span>🔍</span> Buscar</button>
+    </div>
+
+    <div class="grid">
+      {% for file in files %}
+      <a class="card" href="{{ url_for('uploaded_file', filename=file.name) }}" target="_blank">
+        <img src="{{ url_for('static', filename='images/' + file.icon) }}" alt="{{ file.type }}">
+        <h3 title="{{ file.name }}">{{ file.name }}</h3>
+      </a>
+      {% endfor %}
+    </div>
+  </main>
+
+
+  <div class="modal" id="upload-modal">
+    <div class="modal-content">
+      <div>
+        <h2>Subir Archivo</h2>
+        <button id="close-modal-btn">✖️</button>
+      </div>
+      <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
+        <input type="file" name="file" id="file" required>
+        <input type="text" name="name" , id="name" placeholder="Guardar como...">
+        <button type="submit" class="upload" id="upload-btn-2"><svg xmlns="http://www.w3.org/2000/svg" width="12"
+            viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M288 109.3L288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-242.7-73.4 73.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l128-128c12.5-12.5 32.8-12.5 45.3 0l128 128c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L288 109.3zM64 352l128 0c0 35.3 28.7 64 64 64s64-28.7 64-64l128 0c35.3 0 64 28.7 64 64l0 32c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64l0-32c0-35.3 28.7-64 64-64zM432 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
+          </svg> Subir</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2024 Work Solution. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="/static/scripts/index.js"></script>
+</body>
+
+</html>

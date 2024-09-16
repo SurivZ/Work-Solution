@@ -1,0 +1,269 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+header .logo img {
+  width: 2rem;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+header nav ul li {
+  display: inline;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+header .auth-buttons button {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+header .auth-buttons .upload {
+  background-color: #4b5d6e;
+  color: white;
+}
+
+header .auth-buttons .login,
+header .auth-buttons .logout {
+  background-color: #007bff;
+  color: white;
+}
+
+main {
+  text-align: center;
+  padding: 50px 20px;
+  min-height: 73.3vh;
+
+}
+
+main h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-bar button {
+  padding: 10px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.success {
+  color: green;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid green;
+  background-color: rgba(75, 135, 75, 0.5);
+  position: absolute;
+  width: 15.625rem;
+  left: calc(50vw - 9rem);
+  top: 5rem;
+}
+
+.error {
+  color: red;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid red;
+  background-color: rgba(255, 125, 125, 0.5);
+  position: absolute;
+  width: 15.625rem;
+  left: calc(50vw - 8.5rem);
+  top: 5rem;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 50px 0;
+}
+
+.grid .card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  height: 175px;
+  padding: 25px;
+  text-align: center;
+  text-decoration: none;
+  transition: .125s ease;
+  overflow: hidden;
+}
+
+.grid .card:hover {
+  scale: 1.1;
+}
+
+.grid .card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.grid .card h3 {
+  font-size: 18px;
+  margin: 15px 0;
+  height: 25px;
+  overflow: hidden;
+  color: #000000;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal .modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 450px;
+  height: 250px;
+}
+
+.modal .modal-content div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal .modal-content h2 {
+  display: inline;
+}
+
+.modal .modal-content input {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal .modal-content button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#close-modal-btn {
+  background-color: #007bff00;
+  padding: 0.5rem;
+}
+
+#upload-btn-2 {
+  width: 100%;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #343a40;
+  color: white;
+}
+
+/* Media query para pantallas menores a 440px */
+@media (max-width: 440px) {
+
+  /* Mensajes de éxito y error */
+  .success, .error {
+    width: 80%; /* Reducimos el ancho para que no ocupen demasiado espacio */
+    left: calc(50vw - 40%); /* Centramos el mensaje horizontalmente */
+    top: 7rem; /* Bajamos ligeramente el mensaje */
+  }
+
+  /* Botones del header */
+  header .auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre los botones */
+  }
+
+  header .auth-buttons button {
+    width: 100%; /* Hacemos que los botones ocupen todo el ancho disponible */
+  }
+
+  /* Reducción de padding en el header para pantallas pequeñas */
+  header {
+    padding: 10px;
+  }
+
+  /* Reducción de margen del contenido del header */
+  header nav ul {
+    gap: 10px; /* Reducimos el espacio entre elementos del menú */
+  }
+
+  /* Opcional: ajustes en el tamaño de fuente */
+  header nav ul li a, header .auth-buttons button {
+    font-size: 14px; /* Ajustamos el tamaño de fuente para que se vea mejor en pantallas pequeñas */
+  }
+
+  /* Opcional: ajustes en la barra de búsqueda para pantallas pequeñas */
+  .search-bar input {
+    width: 95%; /* La barra de búsqueda ocupa todo el ancho en móviles */
+  }
+
+  .search-bar {
+    flex-direction: column; /* Los elementos se colocan uno debajo del otro en móviles */
+    gap: 10px;
+  }
+}
