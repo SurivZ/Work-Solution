@@ -26,6 +26,10 @@ jobs:
         run: |
           sqlite3 data/database.sqlite3 < data/database.sql
 
+      - name: Create uploads directory
+        run: |
+          mkdir -p uploads
+
       - name: Deploy to OnRender
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
