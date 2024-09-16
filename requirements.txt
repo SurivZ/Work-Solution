@@ -6,9 +6,11 @@ colorama==0.4.6
 cryptography==43.0.1
 Flask==3.0.3
 Flask-Mail==0.10.0
+gunicorn==23.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.4
 MarkupSafe==2.1.5
+packaging==24.1
 pipUpdateAll==1.0.0
 pycodestyle==2.12.1
 pycparser==2.22
