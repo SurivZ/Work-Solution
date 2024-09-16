@@ -24,7 +24,7 @@ jobs:
 
       - name: Set up database
         run: |
-          sqlite3 data/database.sqlite3 < database.sql
+          sqlite3 data/database.sqlite3 < data/database.sql
 
       - name: Deploy to OnRender
         env:
