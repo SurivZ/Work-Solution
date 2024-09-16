@@ -1,0 +1,40 @@
+name: Deploy to OnRender
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Set up database
+        run: |
+          sqlite3 data/database.sqlite3 < data/database.sql
+
+      - name: Create uploads directory
+        run: |
+          mkdir -p uploads
+
+      - name: Deploy to OnRender
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          curl -X POST "https://api.onrender.com/v1/services/<service-id>/deploy" \
+          -H "Authorization: Bearer $RENDER_API_KEY" \
+          -H "Content-Type: application/json" \
+          -d '{"commitMessage": "Deploy from GitHub Actions"}'
